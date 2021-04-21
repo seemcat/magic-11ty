@@ -19,9 +19,9 @@
 <!-- 5. Update visible pages depending on whether or not the user is logged in -->
 <script>
 
-  let privatePages = ['/profile', '/', '/logout'];
+  let privatePages = ['/profile/', '/', '/logout/'];
 
-  let publicPages = ['/login']
+  let publicPages = ['/login/']
 
   const loginElement = document.querySelector("#login")
   const profileElement = document.querySelector("#profile")
@@ -86,7 +86,7 @@
         .logout();
       window
         .location
-        .replace("http://localhost:8080/login");
+        .replace("/login");
     } catch (error) {
       // Handle errors if required!
       console.log('Ran into this error while logging out: ', error);
