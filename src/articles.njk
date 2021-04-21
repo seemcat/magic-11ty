@@ -1,0 +1,15 @@
+---
+pagination:
+    data: cms
+    size: 1
+    alias: article
+    addAllPagesToCollections: true
+layout: base.njk
+tags: articles
+permalink: "/articles/{{ article.title | slug }}/"
+templateEngineOverride: md, njk
+eleventyComputed:
+    title: "{{ article.title }}"
+---
+
+{{ article.body | safe }}

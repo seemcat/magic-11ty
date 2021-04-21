@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+<!-- 1. Get Magic SDK -->
+<script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
+<!-- 2. Initialize Magic -->
+<script>
+const magic = new Magic('pk_test_C156DE7D708EC067');
+</script>
+
+<div id="loader" class="loader">
+<img src="https://uploads-ssl.webflow.com/5fea770e7aaf96ddaa86827a/5fea8840f0097516e5f5f931_wSdvIvS.gif" class="loaderImage"/>
+</div>
+
+<a id="home" href="/">Home</a> ♡
+<a id="profile" href="/profile">Profile</a> ♡
+<a id="login" href="/login">Login</a> ♡
+<button id="logout" onclick="logOut()">Logout</button>
+
+<!-- 4. When the user is logged in/logged out. -->
+<script>
+
+  let privatePages = [
+    '/profile',
+    '/',
+    '/logout'
+  ];
+
+  let publicPages = [
+    '/login'
+  ]
+
+  const loginElement = document.querySelector("#login")
+  const profileElement = document.querySelector("#profile")
+  const logoutElement = document.querySelector("#logout")
+  const homeElement = document.querySelector("#home")
+  const loaderElement = document.querySelector("#loader")
+
+  // Get the user & check whether or
+  // not the user is logged in. Show or
+  // hide pages depending on the outcome.
+  const getUser = async () => {
+
+    // The page user is currently on
+    const currentPath = window.location.pathname;
+
+    // Checks if a user is currently logged in
+    // to the Magic SDK
+    const isLoggedIn = await magic.user.isLoggedIn();
+
+    // If the user is logged in...
+    if (isLoggedIn) {
+
+      // prevent them from accessing public pages.
+      if (publicPages.includes(currentPath)) {
+        window.location.replace('/');
+      } else {
+        // Or hide links they don’t need to see
+        loginElement.style.display = 'none';
+        // Get rid of loader when user gets to correct page
+        loaderElement.style.display = 'none';
+      }
+    } else {
+
+      // If the user is logged out and
+      // they try to access a private page,
+      // send them back to the login page.
+      if (privatePages.includes(currentPath)) {
+        window.location.replace('/login');
+      } else {
+
+        // Or hide links they shouldn’t be able to see
+        profileElement.style.display = 'none';
+        logoutElement.style.display = 'none';
+        homeElement.style.display = 'none';
+        // Get rid of loader when user gets to correct page
+        loader.style.display = 'none';
+      }
+    }
+  };
+
+  getUser();
+</script>
+
+<!-- 3. Log out the currently authenticated Magic user. -->
+<script>
+  const logOut = async () => {
+    try {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      await magic.user.logout();
+      window.location.replace("http://localhost:8080/login");
+    } catch (error) {
+      // Handle errors if required!
+      console.log('Ran into this error while logging out: ', error);
+    }
+    console.log('WHOO! User has logged out of all Magic SDK sessions.');
+  }
+  
+  // Call the logOut function when the user
+  // clicks the Log Out Nav Link.
+  logOutLink.addEventListener('click', logOut);
+</script>
+
+
+    <h1>Logout</h1>
+
+    <!-- 0. HTML -->
+<p><button type="submit" id="logOutLink">Logout</button></p>
+<!-- 3. Log out the currently authenticated Magic user. -->
+<script>
+  const logOut = async () => {
+    try {
+      const isLoggedIn = await magic.user.isLoggedIn();
+      await magic.user.logout();
+      window.location.replace("http://localhost:8080/login");
+    } catch (error) {
+      // Handle errors if required!
+      console.log('Ran into this error while logging out: ', error);
+    }
+    console.log('WHOO! User has logged out of all Magic SDK sessions.');
+  }
+  
+  // Call the logOut function when the user
+  // clicks the Log Out Nav Link.
+  logOutLink.addEventListener('click', logOut);
+</script>
+
+
+</body>
+</html>
