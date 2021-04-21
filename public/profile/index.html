@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
 <!-- 2. Initialize Magic -->
 <script>
-  const magic = new Magic(`YOUR_PUBLIC_KEY`);
+  const magic = new Magic("pk_test_C156DE7D708EC067"); // Your public key
 </script>
 
 <!-- 3. Add loader to wait for Magic SDK -->
@@ -92,9 +92,6 @@
 <script>
   const logout = async () => {
     try {
-      const isLoggedIn = await magic
-        .user
-        .isLoggedIn();
       await magic
         .user
         .logout();
@@ -115,20 +112,20 @@
     <!-- 0. HTML -->
 <h3>Welcome 👇🏼</h3><h3 id="email"></h3>
 <h3>Public Address 👇🏼</h3><h3 id="publicAddress"></h3>
-<!-- 4. Ensure the user’s email is displayed -->
+<!-- 1. Ensure the user’s info is displayed -->
 <script>
 // Assumes a user is already logged in
 const displayUserInfo = async () => {
-  let emailToDisplay = document.getElementById('email');
-  let publicAddressToDisplay = document.getElementById('publicAddress');
+  let emailElement = document.getElementById('email');
+  let publicAddressElement = document.getElementById('publicAddress');
   try {
     const { email, publicAddress } = await magic.user.getMetadata();
-    emailToDisplay.innerHTML = email;
-    publicAddressToDisplay.innerHTML = publicAddress;
+    emailElement.innerHTML = email;
+    publicAddressElement.innerHTML = publicAddress;
     } catch {
       // Handle errors if required!
-      emailToDisplay.innerHTML = "DNE";
-      publicAddressToDisplay.innerHTML = "DNE";
+      emailElement.innerHTML = "DNE";
+      publicAddressElement.innerHTML = "DNE";
       }
       }
       displayUserInfo();

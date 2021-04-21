@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
 <!-- 2. Initialize Magic -->
 <script>
-  const magic = new Magic(`YOUR_PUBLIC_KEY`);
+  const magic = new Magic("pk_test_C156DE7D708EC067"); // Your public key
 </script>
 
 <!-- 3. Add loader to wait for Magic SDK -->
@@ -92,9 +92,6 @@
 <script>
   const logout = async () => {
     try {
-      const isLoggedIn = await magic
-        .user
-        .isLoggedIn();
       await magic
         .user
         .logout();
@@ -118,7 +115,7 @@
     <button type="submit">Login</button>
 </form>
 <div id="result">
-<!-- 3. Use loginWithMagicLink to authenticate user -->
+<!-- 1. Use loginWithMagicLink to authenticate user -->
 <script>
 const form = document.querySelector("#form")
 const input = document.querySelector("#input")
@@ -126,9 +123,9 @@ const result = document.querySelector("#result")
 form.onsubmit = async (e) => {
     e.preventDefault()
     const email = input.value
-    const jwt = await magic.auth.loginWithMagicLink({email})
-    result.innerText = jwt
-    if (jwt) {
+    const didToken = await magic.auth.loginWithMagicLink({email})
+    result.innerText = didToken
+    if (didToken) {
         window.location.replace("http://localhost:8080/profile");
     }
 }

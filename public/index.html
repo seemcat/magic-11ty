@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
 <!-- 2. Initialize Magic -->
 <script>
-  const magic = new Magic(`YOUR_PUBLIC_KEY`);
+  const magic = new Magic("pk_test_C156DE7D708EC067"); // Your public key
 </script>
 
 <!-- 3. Add loader to wait for Magic SDK -->
@@ -92,9 +92,6 @@
 <script>
   const logout = async () => {
     try {
-      const isLoggedIn = await magic
-        .user
-        .isLoggedIn();
       await magic
         .user
         .logout();
@@ -116,27 +113,27 @@
 <h2>Articles</h2>
 <div id="content">
 </div>
-<!-- 3. Only share articles with logged in users -->
+<!-- 1. Only share articles with logged in users -->
 <script>
-// Assumes a user is already logged in
-  let contentToDisplay = document.getElementById('content');
+// Assumes user is already logged in
+  let contentElement = document.getElementById('content');
   const articles = `<ul>
-
-<li><a href="/articles/post-1/">Post 1</li>
-
-<li><a href="/articles/post-2/">Post 2</li>
-
-<li><a href="/articles/post-3/">Post 3</li>
-
-</ul>`;
+  
+  <li><a href="/articles/post-1/">Post 1</li>
+  
+  <li><a href="/articles/post-2/">Post 2</li>
+  
+  <li><a href="/articles/post-3/">Post 3</li>
+  
+  </ul>`;
   const loginMessage = `Please log in to see my blog!`;
 
   try {
     magic.user.getMetadata();
-    contentToDisplay.innerHTML = articles;
+    contentElement.innerHTML = articles;
     } catch {
       // Handle errors if required!
-      contentToDisplay.innerHTML = loginMessage;
+      contentElement.innerHTML = loginMessage;
       }
 </script>
 
