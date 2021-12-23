@@ -22,10 +22,14 @@
 </div>
 
 <!-- 4. Create our Navigation links -->
-<a id="home" href="/">Home</a> ♡
-<a id="profile" href="/profile">Profile</a> ♡
-<a id="login" href="/login">Login</a> ♡
-<button id="logout" onclick="logout()">Logout</button>
+<nav>
+  <ul>
+    <li><a id="home" href="/">Home</a> ♡</li>
+    <li><a id="profile" href="/profile">Profile</a> ♡</li>
+    <li><a id="login" href="/login">Login</a> ♡</li>
+    <li><button id="logout" onclick="logout()">Logout</button></li>
+  </ul>
+</nav>
 
 <!-- 5. Update visible pages depending on whether or not the user is logged in -->
 <script>
@@ -107,11 +111,16 @@
 </script>
 
 
+
     <h1>Profile</h1>
 
     <!-- 0. HTML -->
-<h3>Welcome 👇🏼</h3><h3 id="email"></h3>
-<h3>Public Address 👇🏼</h3><h3 id="publicAddress"></h3>
+<dl>
+    <dt>Email 👇</dt>
+    <dd id="email"></dd>
+    <dt>Public Address 👇</dt>
+    <dd id="publicAddress"></dd>
+</dl>
 <!-- 1. Ensure the user’s info is displayed -->
 <script>
 // Assumes a user is already logged in

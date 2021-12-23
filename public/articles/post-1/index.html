@@ -22,10 +22,14 @@
 </div>
 
 <!-- 4. Create our Navigation links -->
-<a id="home" href="/">Home</a> ♡
-<a id="profile" href="/profile">Profile</a> ♡
-<a id="login" href="/login">Login</a> ♡
-<button id="logout" onclick="logout()">Logout</button>
+<nav>
+  <ul>
+    <li><a id="home" href="/">Home</a> ♡</li>
+    <li><a id="profile" href="/profile">Profile</a> ♡</li>
+    <li><a id="login" href="/login">Login</a> ♡</li>
+    <li><button id="logout" onclick="logout()">Logout</button></li>
+  </ul>
+</nav>
 
 <!-- 5. Update visible pages depending on whether or not the user is logged in -->
 <script>
@@ -105,6 +109,7 @@
     console.log('WHOO! User has logged out of all Magic SDK sessions.');
   }
 </script>
+
 
 
     <h1>Post 1</h1>
