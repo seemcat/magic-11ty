@@ -6,7 +6,7 @@ templateEngineOverride: njk,md
 
 <!-- 0. HTML -->
 <form id="form">
-    <input id="input" type="email" />
+    <label>Email: <input id="input" type="email" /></label>
     <button type="submit">Login</button>
 </form>
 <div id="result">

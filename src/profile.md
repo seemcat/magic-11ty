@@ -5,8 +5,12 @@ templateEngineOverride: njk,md
 ---
 
 <!-- 0. HTML -->
-<h3>Welcome 👇🏼</h3><h3 id="email"></h3>
-<h3>Public Address 👇🏼</h3><h3 id="publicAddress"></h3>
+<dl>
+    <dt>Email 👇</dt>
+    <dd id="email"></dd>
+    <dt>Public Address 👇</dt>
+    <dd id="publicAddress"></dd>
+</dl>
 
 <!-- 1. Ensure the user’s info is displayed -->
 <script>
